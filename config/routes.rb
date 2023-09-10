@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'static_pages#index'
 
   namespace :api do
     # Add routes below this line
@@ -12,8 +13,6 @@ Rails.application.routes.draw do
     put    'tasks/:id/mark_active'    => 'tasks#mark_active'
     delete 'tasks/:id'                => 'tasks#destroy'
   end
-
-  root 'static_pages#index'
 
   # Redirect all other paths to index page, which will be taken over by AngularJS
   get '*path'    => 'static_pages#index'
