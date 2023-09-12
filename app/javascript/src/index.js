@@ -5,12 +5,17 @@ import {
   postTask,
 } from "./requests.js";
 
-indexTasks(function (response) {
-  var htmlString = response.tasks.map(function(task) {
-    return "<div class='col-12 mb-3 p-2 border rounded task' data-id='" + task.id + "'> \
-      " + task.content + "\
-      </div>";
-  });
+// document ready
+$(document).ready(function() {
+  indexTasks(function(response) {
+    console.log('indexTasks response', response)
 
-  $("#tasks").html(htmlString);
+    var htmlString = response.tasks.map(function(task) {
+      return "<div class='col-12 mb-3 p-2 border rounded task' data-id='" + task.id + "'> \
+        " + task.content + "\
+        </div>";
+    });
+
+    $("#todo-list").html(htmlString);
+  });
 });
