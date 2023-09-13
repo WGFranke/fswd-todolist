@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root 'static_pages#index'
 
   namespace :api do
+    # Add routes below this line
+    resources :users, only: [:create]
+
     get    'tasks/:id'                => 'tasks#show'
     get    'tasks'                    => 'tasks#index'
     post   'tasks'                    => 'tasks#create'
@@ -11,5 +14,5 @@ Rails.application.routes.draw do
     delete 'tasks/:id'                => 'tasks#destroy'
   end
   # Redirect all other paths to index page, which will be taken over by AngularJS
-  get '*path'    => 'static_pages#index'
+  get '*path'                          => redirect('/')
 end
